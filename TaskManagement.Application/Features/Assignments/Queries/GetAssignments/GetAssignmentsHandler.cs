@@ -16,8 +16,8 @@ public class GetAssignmentsHandler : IRequestHandler<GetAssignmentsQuery, ErrorO
         if (!string.IsNullOrEmpty(request.Text))
             query = query.Where(x => x.Title.Contains(request.Text.ToLower()) || (string.IsNullOrEmpty(x.Description) || x.Description.Contains(request.Text.ToLower())));
 
-        if (request.Status.HasValue)
-            query = query.Where(x => x.Status == request.Status);
+        if (request.UserId.HasValue)
+            query = query.Where(x => x.UserId == request.UserId);
 
         if (request.Priority.HasValue)
             query = query.Where(x => x.Priority == request.Priority);
@@ -25,10 +25,12 @@ public class GetAssignmentsHandler : IRequestHandler<GetAssignmentsQuery, ErrorO
         var assignments = await query.Select(x => new AssignmentListItem(
             x.Id,
             x.Title,
-            x.Description,
             x.Priority,
             x.Status,
-            x.User == null ? string.Empty : x.User.FullName)).ToListAsync();
+            x.User == null ? string.Empty : x.User.FullName[0].ToString().ToUpper(),
+            (x.DueDate - DateTime.Now).Days == 0 ? "0 day" :
+            (x.DueDate - DateTime.Now).Days == 1 ? "1 day" :
+            (x.DueDate - DateTime.Now).Days + " days")).ToListAsync();
 
         return new GetAssignmentsResponse(assignments);
     }

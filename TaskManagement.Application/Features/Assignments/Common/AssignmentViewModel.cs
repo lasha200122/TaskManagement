@@ -1,9 +1,10 @@
 ﻿namespace TaskManagement.Application.Features.Assignments.Common;
 
-public sealed record AssignmentListItem(
+public sealed record AssignmentViewModel(
     Guid Id,
     string Title,
+    string? Description,
+    DateTimeOffset DueDate,
     AssignmentPriority Priority,
     AssignmentStatus Status,
-    string? Letter,
-    string Day);
+    Guid? UserId);

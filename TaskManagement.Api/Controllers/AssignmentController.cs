@@ -29,4 +29,10 @@ public class AssignmentController : ApiController
     {
         return await Handle<GetAssignmentsQuery, GetAssignmentsResponse>(request);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetAssignment(Guid id) 
+    {
+        return await Handle<GetAssignmentQuery, AssignmentViewModel>(new GetAssignmentQuery(id));
+    }
 }

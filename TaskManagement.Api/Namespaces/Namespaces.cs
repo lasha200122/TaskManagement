@@ -18,6 +18,8 @@ global using TaskManagement.Application.Dependencies;
 global using TaskManagement.Application.Features.Assignments.Commands.Create;
 global using TaskManagement.Application.Features.Assignments.Commands.Delete;
 global using TaskManagement.Application.Features.Assignments.Commands.Update;
+global using TaskManagement.Application.Features.Assignments.Common;
+global using TaskManagement.Application.Features.Assignments.Queries.GetAssignment;
 global using TaskManagement.Application.Features.Assignments.Queries.GetAssignments;
 global using TaskManagement.Application.Features.Authorization.Commands.Login;
 global using TaskManagement.Application.Features.Authorization.Commands.Logout;

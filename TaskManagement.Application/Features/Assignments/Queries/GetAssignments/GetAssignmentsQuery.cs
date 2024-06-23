@@ -3,4 +3,4 @@
 public sealed record GetAssignmentsQuery(
     string? Text,
     AssignmentPriority? Priority,
-    AssignmentStatus? Status) : IRequest<ErrorOr<GetAssignmentsResponse>>;
+    Guid? UserId) : IRequest<ErrorOr<GetAssignmentsResponse>>;
